@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset = "utf-8">
+    <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
+    <title>UK Pony Meets</title>
+    <link href = "/static/style.css" rel = "stylesheet" type = "text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/6d1a539a42.js" crossorigin="anonymous"></script>
+    <script src = "/static/script.js"></script>
+  </head>
+  <body>
+    <div class = "main_box">
+      <div class = "menu_bar">
+        <div class = "home_icon">
+          <a class = "home_item" href = "/">
+            <i class="fa-solid fa-calendar"></i>
+            Upcoming Meets
+          </a>
+        </div>
+        <div class = "dropdown">
+          <div class = "dropdown_header">
+            <i class="fa-solid fa-people-group"></i>
+            <span>Groups</span>
+          </div>
+          <div class = "dropdown_content">
+            {% for group in groups %}
+              <a class = "item" href="/group/{{ group[0].replace(' ','') }}">
+                <p>- {{ group[0] }}</p>
+              </a>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <img src = "/static/Equestrian Map.jpg" alt = "Map of Equestria" class = "header-image">
+      <div class = "centered lora-font" style = "
+          filter: drop-shadow(rgba(0,0,0,0.2) 0px 0px 5px);
+          font-size:3.2vw;">
+          <h1>UK Pony Meets</h1>
+      </div>
+    </div>
+    <div class = "container">
+      <div id = "main_content" class = "meet_content">
+        <div class="parent">
+          <h1 class = "header">
+            {{ page_group[0] }}
+          </h1>
+          <div class = "link_box" style>
+            {% if page_group[3] != "" %}
+              <a href = "{{ page_group[3] }}">
+                <img src = "/static/discord_logo.png" alt = "Discord Link" width = "50" height = "38">
+              </a>
+            {% endif %}
+            {% if page_group[2] != "" %}
+              <a href = "{{ page_group[2] }}">
+                <img src = "/static/website_icon.webp" alt = "Website Link" width = "50" height = "50">
+              </a>
+            {% endif %}
+          </div>
+        </div>
+        <div>
+          <p class = "meet_info_content"></p>
+          {{ page_group[4] }}
+          </p>
+        </div>
+        <h1 class = "header" style = "
+        background-color: #6cbdff;
+        font-size: 20px;
+        margin-top: 35px;">
+          Upcoming Meetups
+        </h1>
+        {% for meet in meets %}
+          <div class = "upcoming_meet_box">
+            <div id = "{{ loop.index0 }}" style = "
+            margin-right: 10px;">
+            </div>
+            <div class = "upcoming_meet_box" style = "
+            justify-content: space-between;
+            column-gap: 10px;">
+              <div style = "
+              background-color: rgb(33, 33, 33);
+              width: 4px;">
+              </div>
+              <div>
+                <h3>
+                  {{ meet[1] }} in {{ meet[4] }}
+                </h3>
+                <p>
+                  {{ meet[5] }}
+                </p>
+              </div>
+            </div>
+          </div>
+          <script>reformatDate("{{ meet[3] }}", "{{ loop.index0 }}")</script>
+        {% endfor %}
+        {% if meets == [] %}
+        <p style = " 
+        margin-bottom: 20px;">
+          Luna couldn't find any meetups for this group! :(
+        </p>
+        <div>
+          <img src = "https://derpicdn.net/img/view/2017/5/20/1441647.png" alt = "Sad Luna" width = "200" height = "118">
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </body>
+</html>

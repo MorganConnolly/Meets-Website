@@ -1,0 +1,18 @@
+-=- Project Details -=-
+A website designed to host meetup details for groups interested in My Little Pony.
+This was a small project which I worked on to develop an understanding of HTML, CSS,
+SQL and how to seemlessly integrate data stored in a database into a website using Flask.
+As a result, the HTML and CSS is not written with accessibility in mind or documented
+to a high standard.
+
+I later applied the skills gained to a group development project for a 
+full-stack web application with the complex goal of automatically accumulating and
+analysing large user data sets from various sources to promote self-improvement, which
+you can read more about on my CV.
+
+-=- Running the Website -=- 
+1. Open the file "api.py" in your IDE.
+2. Ensure the relevant libraries are installed.
+3. Run the code and follow the link in the terminal.
+Optionally, you can utilise the functions within the file "db.py" to add new meets, groups
+and venues. These are fully validated. 

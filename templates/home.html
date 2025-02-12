@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset = "utf-8">
+    <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
+    <title>UK Pony Meets</title>
+    <link href = "/static/style.css" rel = "stylesheet" type = "text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/6d1a539a42.js" crossorigin="anonymous"></script>
+    <script src = "static/script.js"></script>
+  </head>
+  <body>
+    <div class = "main_box">
+      <div class = "menu_bar">
+        <div class = "home_icon">
+          <i class="fa-solid fa-calendar"></i>
+          <a class = "home_item" href = "/">Upcoming Meets</a>
+        </div>
+        <div class = "dropdown">
+          <div class = "dropdown_header">
+            <i class="fa-solid fa-people-group"></i>
+            <span>Groups</span>
+          </div>
+          <div class = "dropdown_content">
+            {% for group in groups %}
+              <a class = "item" href="/group/{{ group[0].replace(' ','') }}">
+                <p>- {{ group[0] }}</p>
+              </a>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <img src = "/static/Equestrian Map.jpg" alt = "Map of Equestria" class = "header-image">
+      <div class = "centered lora-font" style = "
+          filter: drop-shadow(rgba(0,0,0,0.2) 0px 0px 5px);
+          font-size:3.2vw;">
+          <h1>UK Pony Meets</h1>
+      </div>
+    </div>
+    <section class = "group_meets">
+    {% for meet in meets %}
+      <section class = "meet_box">
+        <section class = "meet_box_element" style = "
+          width: 20%;
+          height: 100%;">
+            <section class = "meet_box_element" style = "
+            width: 100%;
+            height: 55%;
+            text-align: center;
+            padding-top: 10px;
+            padding: 10px;">
+              <p id = "date-{{ loop.index0 }}" style = "
+              font-size: 1.5vw;">
+              </p>
+              <p id = "time-{{ loop.index0 }}" style = "
+              font-size: 1.5vw;">
+              </p>
+            </section>
+            <section class = "meet_box_element" style = "
+            width: 100%;
+            height: 45%;
+            text-align: center;
+            padding: 5px;">
+            <p style = "
+            font-size: 1.5vw;">
+              in {{ meet[4] }}!
+            </p>
+            </section>
+        </section>
+        <section class = "meet_box_element" style = "
+          width: 80%;
+          height: 100%;">
+          <section class = "meet_box_element" style = "
+            width: 100%;
+            height: 40%;">
+            <p style = "
+            font-size: 2vw;
+            padding-top: 1%;
+            padding-left: 2%;">
+              {{ meet[1] + " with the " + meet[6] }}
+            </p>
+          </section>
+          <section class = "meet_box_element" style = "
+            width: 100%;
+            height: 60%;">
+            <p style = "
+            font-size: 1.2vw;
+            padding-left: 1%;">
+              {{ meet[5] }}
+            </p>
+          </section>
+          <section class = "banner-container">
+            <section class = "banner">
+              <h1 style = "
+              font-size: 17px;">
+                Begins In:
+              </h1>
+              <p id = "count-{{ loop.index0 }}" style = "
+              font-size: 20px;">
+              </p>
+            </section>
+          </section>
+        </section>
+      </section>
+      <script>createCountDown("{{ meet[2] }}", "count-{{ loop.index0 }}")</script>
+      <script>getDay("{{ meet[2] }}", "date-{{ loop.index0 }}")</script>
+      <script>getTime("{{ meet[2] }}", "{{ meet[3] }}","time-{{ loop.index0 }}")</script>
+    {% endfor %}
+    </section>
+  </body>
+</html>
